@@ -93,7 +93,8 @@ while (scalar(@lines) > 0){
         }
         chomp(my $reachable = shift(@lines)); # the second item is True/False
         # Make a list of unreachable minions
-        if ($reachable =~ "Not connected"){
+        $reachable =~ s/^\s+|\s+$//g;
+        if ($reachable ne "True"){
                 if (!$unreachable){ # if the string is empty
                         chop($unreachable = $minion);
                 } else { # concatenate to existing string
